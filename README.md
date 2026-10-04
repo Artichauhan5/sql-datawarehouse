@@ -1,15 +1,33 @@
-An end-to-end data engineering and analytics project built using Microsoft SQL Server, transforming raw operational data into business-ready analytical datasets through a 3-Tier Medallion Architecture (Bronze, Silver, and Gold layers).
+# Medallion Architecture Data Warehouse & Business Analytics
 
-📌 Project Overview
-This project implements a enterprise-grade data warehouse on SQL Server. Raw transactional data is ingested, cleansed, transformed, and modeled to deliver high-performance dimensional models for executive reporting and business intelligence.
+An end-to-end data engineering and analytics project built using **Microsoft SQL Server**, transforming raw operational data into business-ready analytical datasets through a **3-Tier Medallion Architecture** (**Bronze**, **Silver**, and **Gold** layers).
 
-Bronze Layer: Raw data staging via automated T-SQL bulk procedures.
+---
 
-Silver Layer: Data cleansing, deduplication, type casting, and schema standardization.
+## Project Overview
 
-Gold Layer: Star Schema dimensional modeling (Facts & Dimensions) optimized for business reporting.
+This project implements an enterprise-grade data warehouse on SQL Server. Raw transactional data is ingested, cleansed, transformed, and modeled to deliver high-performance dimensional models for executive reporting and business intelligence.
 
-⚙️ Engineering & Pipeline Details
+* **Bronze Layer:** Raw data staging via automated T-SQL bulk procedures.
+* **Silver Layer:** Data cleansing, deduplication, type casting, and schema standardization.
+* **Gold Layer:** Star Schema dimensional modeling (Facts & Dimensions) optimized for business reporting.
+
+---
+
+## Data Architecture
+
+                       DATA WAREHOUSE PIPELINE
+                       
+┌─────────────────┐       ┌─────────────────┐       ┌─────────────────┐
+│  Bronze Layer   │ ────► │  Silver Layer   │ ────► │   Gold Layer    │
+│  (Raw Ingest)   │       │   (Cleansed)    │       │ (Star Schema)   │
+└─────────────────┘       └─────────────────┘       └─────────────────┘
+ • CSV / Bulk Load         • Data Cleaning           • Dimension Views
+ • Truncate & Load         • Deduplication           • Fact Views
+ • Schema Staging          • Integrity Checks        • Business KPIs
+
+
+ Engineering & Pipeline Details
 1. Bronze Layer (Raw Ingestion)
 Ingests raw source datasets into SQL Server with zero transformations to preserve historical source state.
 
@@ -29,7 +47,7 @@ Implements surrogate keys, dimension tables (e.g., DimCustomer, DimProduct), and
 
 Optimizes analytical query response times for downstream BI reporting.
 
-📊 Business Analytics & Key Metrics
+Business Analytics & Key Metrics
 The Gold layer supports advanced T-SQL queries using Common Table Expressions (CTEs) and Window Functions to extract strategic business insights:
 
 Customer Analytics: RFM segmentation (Recency, Frequency, Monetary value) and customer cohort behavior.
